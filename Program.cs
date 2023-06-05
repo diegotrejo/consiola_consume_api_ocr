@@ -10,6 +10,10 @@ namespace consiola_consume_api_ocr
 {
     internal class Program
     {
+        static string url = "https://eastus.api.cognitive.microsoft.com/vision/v3.2/ocr";
+        static string key = "d1c3a31c3e5243e8af964c1c95a01cb4";
+        static string par = "?language=es&detectOrientation=true&model-version=latest";
+
         static void Main(string[] args)
         {
             //var ocr = ConsumeOCR_Url("https://i.pinimg.com/originals/39/8a/66/398a663074313bb6429c0bd3c8c646aa.jpg");
@@ -20,10 +24,6 @@ namespace consiola_consume_api_ocr
 
         private static OCRresponse ConsumeOCR_archivlo_local(string nombre_archivo)
         {
-            var url = "https://eastus.api.cognitive.microsoft.com/vision/v3.2/ocr";
-            var key = "d1c3a31c3e5243e8af964c1c95a01cb4";
-            var par = "?language=es&detectOrientation=true&model-version=latest";
-
             var api = new WebClient();
 
             api.Headers.Add("Content-Type", "application/octet-stream");
@@ -38,14 +38,9 @@ namespace consiola_consume_api_ocr
 
         private static OCRresponse ConsumeOCR_Url(string url_foto)
         {
-            var url = "https://eastus.api.cognitive.microsoft.com/vision/v3.2/ocr";
-            var key = "d1c3a31c3e5243e8af964c1c95a01cb4";
-            var par = "?language=es&detectOrientation=true&model-version=latest";
-
-            var foto = url_foto; 
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
-                Url = foto
+                Url = url_foto
             }
             );
 
